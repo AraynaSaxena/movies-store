@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero header with soft gradient/bg image -->
+<header class="hero-about py-5 text-white text-center">
+  <div class="container">
+    <h1 class="display-5 fw-semibold mb-2">About Movies Store</h1>
+    <p class="lead opacity-75 mb-0">Your ticket to unlimited entertainment.</p>
+  </div>
+</header>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <!-- Copy block -->
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm rounded-4">
+          <div class="card-body p-4 p-md-5">
+            <h2 class="h3 section-title mb-3">Why you’ll love us</h2>
+            <p class="lead mb-3">
+              At Movies Store, we offer a vast digital library across genres—latest releases, timeless classics, and hidden gems.
+            </p>
+            <p class="mb-4">
+              Rent or purchase titles and stream instantly in high-definition on your favorite devices. Our intuitive search and
+              smart recommendations make picking the perfect movie night effortless.
+            </p>
+
+            <ul class="list-unstyled m-0">
+              <li class="d-flex align-items-start mb-2">
+                <span class="feature-icon me-2"><i class="fa-solid fa-bolt"></i></span>
+                <span><strong>Instant streaming</strong> in HD/Full HD.</span>
+              </li>
+              <li class="d-flex align-items-start mb-2">
+                <span class="feature-icon me-2"><i class="fa-solid fa-tv"></i></span>
+                <span>Watch on smart TV, tablet, or phone.</span>
+              </li>
+              <li class="d-flex align-items-start">
+                <span class="feature-icon me-2"><i class="fa-solid fa-magnifying-glass"></i></span>
+                <span>Smart search & tailored recommendations.</span>
+              </li>
+            </ul>
+
+            <a href="/" class="btn btn-primary mt-4 rounded-pill px-4">Browse Movies</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image block -->
+      <div class="col-lg-6 text-center">
+        <img
+          src="{% static 'img/about.jpg' %}"
+          class="img-fluid rounded-4 shadow-lg about-img"
+          alt="Collage of popular movies"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

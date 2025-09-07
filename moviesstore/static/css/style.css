@@ -1,0 +1,81 @@
+.bg-index{
+  background: url("/static/img/background.jpg") no-repeat
+    fixed;
+  background-size: 100% auto;
+}
+/* Soft gradient hero with background image (reuses background.jpg) */
+.hero-about {
+  background:
+    linear-gradient(to bottom right, rgba(15, 23, 42, 0.85), rgba(99, 102, 241, 0.6)),
+    url('../img/background.jpg') center / cover no-repeat;
+  border-bottom-left-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+}
+
+/* Underline accent for section titles */
+.section-title {
+  position: relative;
+  display: inline-block;
+}
+.section-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #6366f1, #22d3ee);
+}
+
+/* Small circular icon badge */
+.feature-icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(99, 102, 241, 0.15);
+  font-size: 0.9rem;
+}
+
+/* Keep the about image tidy */
+.about-img {
+  max-height: 420px;
+  object-fit: cover;
+}
+
+.navbar a.nav-link {
+  color: #FFFEF6 !important;
+}
+.bg-dark {
+  background-color: #2E2E2E !important;
+}
+
+.ms-footer {
+  background-color: #202020;
+}
+.ms-footer p {
+  color: #7F7F7F;
+  font-size: 13px;
+}
+.ms-footer a:hover {
+  color: #6ab43e;
+  text-decoration: none;
+}
+.ms-footer-bottom span{
+  font-size: 13px;
+  line-height: 38px;
+}
+.ms-footer-bottom a {
+  color: #6ab43e;
+  text-decoration: none;
+}
+.ms-footer-bottom a:hover {
+  color: #fff;
+}
+
+.img-card-200 {
+  width: fit-content;
+  max-height: 200px;
+}
