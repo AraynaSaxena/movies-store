@@ -28,7 +28,21 @@
             </div>
           </form>
         </p>
-        <h2>Reviews</h2>
+
+        {# --- Option C: Hide this movie (only when logged in) --- #}
+        {% if user.is_authenticated %}
+        <form method="post" action="{% url 'movies.hide' id=template_data.movie.id %}" class="mt-2">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-outline-secondary btn-sm">
+            Hide this movie
+          </button>
+          <a class="btn btn-link btn-sm" href="{% url 'movies.hidden_list' %}">
+            View Hidden Movies
+          </a>
+        </form>
+        {% endif %}
+
+        <h2 class="mt-4">Reviews</h2>
         <hr />
         <ul class="list-group">
           {% for review in template_data.reviews %}
@@ -49,6 +63,7 @@
           <li class="list-group-item">No reviews yet. Be the first to review this movie!</li>
           {% endfor %}
         </ul>
+
         {% if user.is_authenticated %}
         <div class="container mt-4">
           <div class="row justify-content-center">

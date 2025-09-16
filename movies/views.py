@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Movie, Review
 from django.contrib.auth.decorators import login_required
+from .models import Movie, Review, HiddenMovie
 
 
 def index(request):
@@ -76,3 +77,38 @@ def top_comments(request):
         'reviews': top_reviews
     }
     return render(request, 'movies/top_comments.html', {'template_data': template_data})
+
+def index(request):
+    search_term = request.GET.get('search')
+    movies_qs = Movie.objects.all()
+    if request.user.is_authenticated:
+        hidden_ids = HiddenMovie.objects.filter(user=request.user).values_list('movie_id', flat=True)
+        movies_qs = movies_qs.exclude(id__in=list(hidden_ids))
+    if search_term:
+        movies_qs = movies_qs.filter(name__icontains=search_term)
+    template_data = {'title': 'Movies', 'movies': movies_qs}
+    return render(request, 'movies/index.html', {'template_data': template_data})
+
+@login_required
+def hide_movie(request, id):
+    if request.method == 'POST':
+        movie = get_object_or_404(Movie, id=id)
+        HiddenMovie.objects.get_or_create(user=request.user, movie=movie)
+    return redirect('movies.index')
+
+@login_required
+def hidden_list(request):
+    hidden = (HiddenMovie.objects
+              .select_related('movie')
+              .filter(user=request.user)
+              .order_by('-created_at'))
+    template_data = {'title': 'Hidden Movies', 'hidden': hidden}
+    return render(request, 'movies/hidden_list.html', {'template_data': template_data})
+
+@login_required
+def unhide_movie(request, id):
+    if request.method == 'POST':
+        hm = get_object_or_404(HiddenMovie, user=request.user, movie_id=id)
+        hm.delete()
+    # After unhide, send them back to hidden list (so they can restore multiple)
+    return redirect('movies.hidden_list')
